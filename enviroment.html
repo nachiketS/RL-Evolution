@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Evolution</title>
+        <script>
+            function draw(){
+                var i = 0;
+                function generate(){
+                    setTimeout(function(){
+                        x = Math.floor(Math.random()*500);
+                        y = Math.floor(Math.random()*500);
+                        man(x,y);
+                        goal();
+                        i++;
+                        if(i<10){
+                            generate();
+                        }
+                    },1000)
+                }
+                generate();
+            }
+            function man(x,y){
+                this.x = x;
+                this.y = y;
+                var canvas = document.getElementById('environment')
+                var god = canvas.getContext('2d')
+                god.fillStyle = 'red'
+                god.beginPath();
+                god.arc(x, y, 5, 0, 2 * Math.PI);
+                god.stroke();    
+                god.fill()         
+            }
+            function goal(){
+                var canvas = document.getElementById('environment')
+                var god = canvas.getContext('2d')
+                god.fillStyle = 'green'
+                god.fillRect(225,450,50,50)
+            }
+        </script>
+        <style>
+            canvas { border: 1px solid black}
+        </style>
+    </head>
+    <body onload = "draw()";>
+        <canvas id = 'environment', height="500", width="500"> some text </canvas>
+    </body>
+</html>
